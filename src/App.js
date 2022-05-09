@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import Footer from './components/Foooter/Footer';
+import Header from './components/Header/Header';
+import Layout from './components/Layout/Layout';
+import bgImg from './assets/bg-img.jpeg';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header title={'Title'} descr={'Descr'}  />
+
+      <Layout 
+        urlBg={bgImg}
+        title='title-1'
+        descr='descr - 1'/>
+      <Layout 
+        colorBg='#e2e2e2'
+        title='title-3'
+        descr='descr - 2'/>
+      <Layout 
+        urlBg={bgImg}
+        title='title-2'
+        descr='descr - 3'/>
+
+      <Footer/>
     </div>
   );
 }
