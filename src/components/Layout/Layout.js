@@ -2,7 +2,12 @@ import style from './style.module.scss';
 
 const Layout = ({title, urlBg, colorBg, children}) => {
 
-  const sectionStyle = {};
+  const sectionStyle = {
+    backgroundPosition: 'bottom center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+  };
+
   if(urlBg) {
     sectionStyle.backgroundImage = `url(${urlBg})`;
   }

@@ -3,6 +3,7 @@ import Footer from './components/Foooter/Footer';
 import Header from './components/Header/Header';
 import Layout from './components/Layout/Layout';
 import bgImg from './assets/bg-img.jpeg';
+import bgImg3 from './assets/bg-img-3.jpeg'
 import pockemonCards from './data/pockemons.json';
 import PockemonCard from './components/PockemonCard/PockemonCard';
 
@@ -14,7 +15,7 @@ function App() {
 
       <Layout 
         id='rules'
-        urlBg={bgImg}
+        urlBg={bgImg3}
         title='Rules'> 
           <p>In the game two players face off against one another, one side playing as "blue", the other as "red" on a 3x3 grid.</p>
           <p>Each player has five cards in a hand and the aim is to capture the opponent's cards by turning them into the player's own color of red or blue.</p>

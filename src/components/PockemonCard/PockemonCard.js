@@ -6,7 +6,7 @@ const PockemonCard = ({id, name, type, img, values}) => {
 
   const [isActive, setActive] = useState(false);
   const handleActive = () => {
-    isActive ? setActive(false) : setActive(true);
+    setActive(!isActive);
   }
 
   return (
