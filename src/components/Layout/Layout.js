@@ -1,12 +1,11 @@
-import style from './style.module.css';
+import style from './style.module.scss';
 
-const Layout = ({title, descr, urlBg, colorBg}) => {
+const Layout = ({title, urlBg, colorBg, children}) => {
 
   const sectionStyle = {};
   if(urlBg) {
     sectionStyle.backgroundImage = `url(${urlBg})`;
   }
-  console.log(sectionStyle);
   if(colorBg) {
     sectionStyle.backgroundColor = colorBg;
   }
@@ -20,7 +19,7 @@ const Layout = ({title, descr, urlBg, colorBg}) => {
               <span className={style.separator}></span>
             </div>
             <div className={`${style.desc} ${style.full}`}>
-                {descr && <p>{descr}</p>}
+                {children ? children : ''}
             </div>
         </article>
     </div>
