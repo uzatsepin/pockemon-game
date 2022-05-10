@@ -1,5 +1,6 @@
 import style from './style.module.scss';
 
+
 const Layout = ({title, urlBg, colorBg, children}) => {
 
   const sectionStyle = {
