@@ -1,33 +1,43 @@
 import style from './style.module.scss';
 import cn from 'classnames';
 
-const Menu = ({active, click}) => {
+const MENU = [
+  {
+    id: 1,
+    title: 'HOME',
+    to: '#welcome'
+  },
+  {
+    id: 2,
+    title: 'GAME',
+    to: '#game'
+  },
+  {
+    id: 3,
+    title: 'ABOUT',
+    to: '#about'
+  },
+  {
+    id: 4,
+    title: 'CONTACT',
+    to: '#contact'
+  }
+]
+
+const Menu = ({isOpen}) => {
 
   return (
-  <div className={cn(style.menuContainer, {[style.active] : active}, {[style.deactive] : !active})} onClick={click}>
+
+  <div className={cn(style.menuContainer, 
+  {[style.active] : isOpen === true}, 
+  {[style.deactive] : isOpen === false})}>
+
   <div className={style.overlay} />
   <div className={style.menuItems}>
     <ul>
-      <li>
-        <a href="#welcome">
-          HOME
-        </a>
-      </li>
-      <li>
-        <a href="#game">
-          GAME
-        </a>
-      </li>
-      <li>
-        <a href="#about">
-          ABOUT
-        </a>
-      </li>
-      <li>
-        <a href="#contact">
-          CONTACT
-        </a>
-      </li>
+      {
+        MENU.map(({title, to, id}) => <li key={id}><a href={to}>{title}</a></li>)
+      }
     </ul>
   </div>
 </div>
