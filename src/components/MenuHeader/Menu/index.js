@@ -28,15 +28,22 @@ const Menu = ({isOpen}) => {
 
   return (
 
-  <div className={cn(style.menuContainer, 
-  {[style.active] : isOpen === true}, 
-  {[style.deactive] : isOpen === false})}>
+  <div className={cn(style.menuContainer, {
+    [style.active] : isOpen === true,
+    [style.deactive]: isOpen === false,
+  })}>
 
   <div className={style.overlay} />
-  <div className={style.menuItems}>
+  <div>
     <ul>
       {
-        MENU.map(({title, to, id}) => <li key={id}><a href={to}>{title}</a></li>)
+        MENU.map(({title, to, id}) => 
+        (<li key={id}>
+          <a href={to}>
+            {title}
+          </a>
+          </li>
+          ))
       }
     </ul>
   </div>
