@@ -2,7 +2,7 @@ import style from './style.module.scss';
 import cn from 'classnames'
 
 
-const NavBar = ({isOpen, bgActive = true, onClickHamburg}) => {
+const NavBar = ({isOpen, bgActive = false, onClickHamburg}) => {
 
   return (
     <nav className={cn(style.root, {
