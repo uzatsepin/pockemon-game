@@ -25,7 +25,7 @@ const MENU = [
   }
 ]
 
-const Menu = ({isOpen}) => {
+const Menu = ({isOpen, onClickHamburg}) => {
 
   return (
 
@@ -40,7 +40,7 @@ const Menu = ({isOpen}) => {
       {
         MENU.map(({title, to, id}) => 
         (<li key={id}>
-          <Link to={to}>
+          <Link to={to} onClick={onClickHamburg}>
             {title}
           </Link>
           </li>
