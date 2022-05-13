@@ -3,8 +3,6 @@ import Header from '../../components/Header';
 import Layout from '../../components/Layout';
 import bgImg from '../../assets/bg-img.jpeg';
 import bgImg3 from '../../assets/bg-img-3.jpeg'
-import pockemonCards from '../../data/pockemons.json';
-import PockemonCard from '../../components/PockemonCard';
 import MenuHeader from '../../components/MenuHeader';
 
 
@@ -37,9 +35,9 @@ const HomePage = ({onChangePage}) => {
         title='Cards'
         descr='descr - 2'> 
        <div className={style.flex}>
-          {
+          {/* {
             pockemonCards.map(item => <PockemonCard {...item} key={item.id}/>)
-          }
+          } */}
        </div>
       </Layout>
 

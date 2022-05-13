@@ -1,7 +1,6 @@
 import style from './style.module.scss';
 import cn from 'classnames';
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { dbRef } from './services/firebase';
 
 import HomePage from "./routes/HomePage";
 import GamePage from "./routes/GamePage";
