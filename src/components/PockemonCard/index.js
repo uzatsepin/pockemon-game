@@ -3,16 +3,15 @@ import cardBackSide from './assets/card-back-side.jpeg';
 import cn from 'classnames';
 import style from './style.module.scss';
 
-const PockemonCard = ({id, name, type, img, values}) => {
+const PockemonCard = ({id, name, type, img, values, isActive, onCardClick}) => {
 
-  const [isActive, setActive] = useState(false);
-  const handleActive = () => {
-    setActive(!isActive);
+  const handleCardClick = () => {
+    onCardClick && onCardClick(id);
   }
 
   return (
-    <div className={style.root} onClick={handleActive}>
-      <div className={cn(style.pokemonCard, {[style.active] : isActive})}>
+    <div className={style.root}>
+      <div className={cn(style.pokemonCard, {[style.active] : isActive})} onClick={handleCardClick}>
         <div className={style.cardFront}>
             <div className={cn(style.wrap, style.front)}>
                 <div className={cn(style.pokemon, style[type])}>
