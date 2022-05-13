@@ -1,30 +1,31 @@
 import style from './style.module.scss';
 import cn from 'classnames';
+import { Link } from 'react-router-dom';
 
 const MENU = [
   {
     id: 1,
     title: 'HOME',
-    to: '#welcome'
+    to: '/'
   },
   {
     id: 2,
     title: 'GAME',
-    to: '#game'
+    to: '/game'
   },
   {
     id: 3,
     title: 'ABOUT',
-    to: '#about'
+    to: '/about'
   },
   {
     id: 4,
     title: 'CONTACT',
-    to: '#contact'
+    to: '/contact'
   }
 ]
 
-const Menu = ({isOpen}) => {
+const Menu = ({isOpen, onClickHamburg}) => {
 
   return (
 
@@ -39,9 +40,9 @@ const Menu = ({isOpen}) => {
       {
         MENU.map(({title, to, id}) => 
         (<li key={id}>
-          <a href={to}>
+          <Link to={to} onClick={onClickHamburg}>
             {title}
-          </a>
+          </Link>
           </li>
           ))
       }
