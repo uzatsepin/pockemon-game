@@ -1,12 +1,26 @@
 import style from './style.module.scss';
 import { useNavigate } from "react-router-dom";
 import PockemonCard from "../../components/PockemonCard";
-import pockemonCards from '../../data/pockemons.json'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { database } from '../../services/firebase';
+import { ref, child, get } from "firebase/database";
 
 const GamePage = () => {
 
-  const [pokemons, setPokemons] = useState(pockemonCards);
+  const [pokemons, setPokemons] = useState({});
+
+  useEffect(() => {
+    const dbRef = ref(database);
+    get(child(dbRef, 'pokemons')).then((snapshot) => {
+      if(snapshot.exists()) {
+        setPokemons(snapshot.val());
+      } else {
+        console.log('No data available');
+      }
+    }).catch((error) => {
+      console.error(error);
+    })
+  }, []);
 
   const navigate = useNavigate();
   const handleClickButton = () => {
@@ -15,20 +29,24 @@ const GamePage = () => {
 
   const handleChangeActivePokemons = (id) => {
     setPokemons(prevState => {
-      return Array.from(prevState, (el) => {
-        if(el.id === id){el.active = true};
-        return el;
-      })
-    })
-  }
+      return Object.entries(prevState).reduce((acc, item) => {
+        const pokemon = {...item[1]};
+        if(pokemon.id === id) {
+          pokemon.active = true;
+      };
+      acc[item[0]] = pokemon;
+      return acc;
+      }, {});
+  });
+};
 
   return (
     <>
       <div className={style.flex}>
           {
-            pockemonCards.map(({name, img, id, type, values, active}) => (
+            Object.entries(pokemons).map(([key, {name, img, id, type, values, active}]) => (
               <PockemonCard 
-                key={id}
+                key={key}
                 isActive={active}
                 name={name}
                 img={img}
@@ -44,6 +62,6 @@ const GamePage = () => {
       </button>
     </>
   )
-}
+};
 
 export default GamePage;
