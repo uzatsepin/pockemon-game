@@ -1,26 +1,22 @@
 import style from './style.module.scss';
 import { useNavigate } from "react-router-dom";
 import PockemonCard from "../../components/PockemonCard";
-import { useState, useEffect } from 'react';
-import { database } from '../../services/firebase';
-import { ref, child, get } from "firebase/database";
+import { useState, useEffect, useContext } from 'react';
+import firebaseContext from '../../services/firebaseContext';
 
 const GamePage = () => {
 
   const [pokemons, setPokemons] = useState({});
+  const firebase = useContext(firebaseContext)
+
+  const getPokemons = async () => {
+    const response = await firebase.getPokemonsOnce();
+    setPokemons(response);
+  }
 
   useEffect(() => {
-    const dbRef = ref(database);
-    get(child(dbRef, 'pokemons')).then((snapshot) => {
-      if(snapshot.exists()) {
-        setPokemons(snapshot.val());
-      } else {
-        console.log('No data available');
-      }
-    }).catch((error) => {
-      console.error(error);
-    })
-  }, []);
+    getPokemons();
+  }, [])
 
   const navigate = useNavigate();
   const handleClickButton = () => {
@@ -35,6 +31,7 @@ const GamePage = () => {
           pokemon.active = true;
       };
       acc[item[0]] = pokemon;
+      firebase.postPokemon(item[0], pokemon);
       return acc;
       }, {});
   });

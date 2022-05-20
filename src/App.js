@@ -9,12 +9,15 @@ import ContactPage from './routes/ContactPage/'
 import MenuHeader from './components/MenuHeader/'
 import Footer from './components/Foooter/'
 import NotFound from './routes/NotFound/'
-
+import firebaseContext from './services/firebaseContext';
+import Firebase from './services/firebase';
 
 const App = () => {
   const url = useLocation();
+
   return (
         <>
+        <firebaseContext.Provider value={new Firebase()}>
           <MenuHeader bgActive={url.pathname !== '/'}/>
           <div className={cn(style.wrap, {
             [style.isHomePage] : url.pathname === '/'
@@ -32,6 +35,7 @@ const App = () => {
             </Routes>
           </div>
           <Footer/>
+          </firebaseContext.Provider>
         </>
   )
 }
